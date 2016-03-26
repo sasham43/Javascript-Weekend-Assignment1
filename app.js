@@ -88,10 +88,13 @@ $(document).ready(function(){
 	$('#add-claims').on('click', function(){
 		var newName = $('#patient-name').val();
 		var newVisitType = $('#visit-type').val();
-		var newCost = $('#cost').val();
+		var newCost = parseInt($('#cost').val());
+		var displayCost = '$' + newCost.toLocaleString();
+
+		console.log(displayCost);
 
 		var newClaim = new claim(newName, newVisitType, newCost);
-		var displayClaim = '<tr><td>' + newName + '</td><td>' + newVisitType + '</td><td>$' + newCost.toLocaleString() + '</td></tr>';
+		var displayClaim = '<tr><td>' + newName + '</td><td>' + newVisitType + '</td><td>' + displayCost + '</td></tr>';
 
 		initialList.push(newClaim);
 		$('.additional-claims').before(displayClaim);

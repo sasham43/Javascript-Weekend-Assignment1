@@ -19,7 +19,8 @@
 					<input id="patient-name" type="text" placeholder="Patient Name" />
 				</td>
 				<td>
-					<input id="visit-type" type="text" placeholder="Visit Type" />
+					<input id="visit-type" type="text" list="visit-types" placeholder="Visit Type" />
+					<datalist id="visit-types"><option value="Optical"></option><option value="Specialist"></option><option value="Primary Care"></option><option value="Emergency"></option></datalist>
 				</td>
 				<td>
 					<input id="cost" type="text" placeholder="Cost" />
@@ -27,12 +28,6 @@
 			</tr>
 		</table>
 		<button id="add-claims">Add Claim</button>
-
-		<form>
-
-		</form>
-
-
 
 
 		<div class="message-center">
