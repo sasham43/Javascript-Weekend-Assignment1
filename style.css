@@ -15,6 +15,7 @@ table {
 
 th, td {
   border: solid 1px #222222;
+  padding: 2px;
 }
 
 th {
@@ -27,6 +28,15 @@ button {
   width: 250px;
   height: 50px;
   font-size: 15px;
+}
+
+input {
+  width: 97%;
+  height: 100%;
+}
+
+.message-center{
+  border-top: dashed 2px #444444;
 }
 
 .total {
