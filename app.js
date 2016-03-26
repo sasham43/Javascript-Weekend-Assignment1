@@ -48,6 +48,23 @@ for (var it = 0; it < initialList.length; it++){
 
 console.log('Total amount payed out: $' + totalPayedOut);
 
+
+// hard mode
+$(document).ready(function(){
+	// display initial claims
+	var claimText = '';
+	for(var jt = 0; jt < initialList.length; jt++){
+		var pName = initialList[jt].patientName;
+		var vType = initialList[jt].visitType;
+		var amount = '$' + initialList[jt].visitCost.toLocaleString();
+
+		claimText += '<tr><td>' + pName + '</td><td>' + vType + '</td><td>' + amount + '</td></tr>';
+	}
+	$('.display-claims').append(claimText);
+
+	console.log('claims', claimText);
+});
+
 //function to determine percent covered
 function calcPercentCovered(claim){
 	// pull variable value out of object for processing
