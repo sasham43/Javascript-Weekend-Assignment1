@@ -42,11 +42,13 @@ initialList.push(claim6, claim7, claim8, claim9, claim10);
 
 var totalPayedOut = 0;
 
-for (var it = 0; it < initialList.length; it++){
-	calcAmountCovered(initialList[it]);
-}
+// not needed in hard mode
 
-console.log('Total amount payed out: $' + totalPayedOut);
+// for (var it = 0; it < initialList.length; it++){
+// 	calcAmountCovered(initialList[it]);
+// }
+//
+// console.log('Total amount payed out: $' + totalPayedOut);
 
 
 // hard mode
@@ -62,7 +64,20 @@ $(document).ready(function(){
 	}
 	$('.display-claims').append(claimText);
 
-	console.log('claims', claimText);
+	//console.log('claims', claimText);
+
+	// process claims, display results
+	var processedClaims = '';
+	$('#process-claims').on('click', function(){
+		for (var kt = 0; kt < initialList.length; kt++){
+			var tempName = initialList[kt].patientName;
+			var tempAmount = calcAmountCovered(initialList[kt]);
+
+			processedClaims += '<tr><td>' + tempName + '</td><td>$' + tempAmount.toLocaleString() + '</td></tr>';
+		}
+		$('.claims-payed').append(processedClaims);
+		$('.total').append('<p>$' + totalPayedOut.toLocaleString() + '</p>')
+	});
 });
 
 //function to determine percent covered
@@ -104,7 +119,9 @@ function calcAmountCovered(claim){
 
 	totalPayedOut += amountCovered;
 
-	console.log('Paid out $' + amountCovered + ' for ' + name);
+	//console.log('Paid out $' + amountCovered + ' for ' + name);
+
+	return amountCovered; // added for hard mode
 }
 
 function claim(name, type, cost){
