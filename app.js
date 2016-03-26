@@ -28,7 +28,17 @@ var claim5 = {
 	visitCost: 770
 }
 
-var initialList = [claim1, claim2, claim3, claim4, claim5]
+var claim6 = new claim('Bob Jones', 'Specialist', 440);
+var claim7 = new claim('Scarf Grommet', 'Emergency', 2000);
+var claim8 = new claim('Docent Brimsby', 'Optical', 300);
+var claim9 = new claim('Jeff Scorchboard', 'Primary Care', 2500);
+var claim10 = new claim('Eleanor Burnston', 'Primary Care', 2000);
+
+var initialList = [claim1, claim2, claim3, claim4, claim5];
+
+initialList.push(claim6, claim7, claim8, claim9, claim10);
+
+console.log(initialList);
 
 var totalPayedOut = 0;
 
