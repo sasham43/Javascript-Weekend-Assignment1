@@ -46,6 +46,8 @@ for (var it = 0; it < initialList.length; it++){
 	calcAmountCovered(initialList[it]);
 }
 
+console.log('Total amount payed out: $' + totalPayedOut);
+
 //function to determine percent covered
 function calcPercentCovered(claim){
 	// pull variable value out of object for processing
