@@ -70,13 +70,17 @@ $(document).ready(function(){
 	var processedClaims = '';
 	$('#process-claims').on('click', function(){
 		for (var kt = 0; kt < initialList.length; kt++){
-			var tempName = initialList[kt].patientName;
-			var tempAmount = calcAmountCovered(initialList[kt]);
+			if(!initialList[kt].claimProcessed){
+				var tempName = initialList[kt].patientName;
+				var tempAmount = calcAmountCovered(initialList[kt]);
 
-			processedClaims += '<tr><td>' + tempName + '</td><td>$' + tempAmount.toLocaleString() + '</td></tr>';
+				processedClaims += '<tr><td>' + tempName + '</td><td>$' + tempAmount.toLocaleString() + '</td></tr>';
+				initialList[kt].claimProcessed = true;
+			}
 		}
 		$('.total').before(processedClaims);
-		$('.total td:nth-child(2)').text('$' + totalPayedOut.toLocaleString())
+		$('.total td:nth-child(2)').text('$' + totalPayedOut.toLocaleString());
+		processedClaims = '';
 	});
 });
 

@@ -28,7 +28,7 @@ button {
 }
 
 .total {
-  border-top: solid 3px black;
+  border-top: solid 2px #000;
 }
 
 .total td:first-child{
