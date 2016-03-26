@@ -62,7 +62,7 @@ $(document).ready(function(){
 
 		claimText += '<tr><td>' + pName + '</td><td>' + vType + '</td><td>' + amount + '</td></tr>';
 	}
-	$('.display-claims').append(claimText);
+	$('.additional-claims').before(claimText);
 
 	//console.log('claims', claimText);
 
@@ -81,6 +81,25 @@ $(document).ready(function(){
 		$('.total').before(processedClaims);
 		$('.total td:nth-child(2)').text('$' + totalPayedOut.toLocaleString());
 		processedClaims = '';
+	});
+
+	// add claims to initial claims list
+	var claimNumber = 10;
+	$('#add-claims').on('click', function(){
+		var newName = $('#patient-name').val();
+		var newVisitType = $('#visit-type').val();
+		var newCost = $('#cost').val();
+
+		var newClaim = new claim(newName, newVisitType, newCost);
+		var displayClaim = '<tr><td>' + newName + '</td><td>' + newVisitType + '</td><td>$' + newCost.toLocaleString() + '</td></tr>';
+
+		initialList.push(newClaim);
+		$('.additional-claims').before(displayClaim);
+
+		// reset input fields
+		$('#patient-name').val('');
+		$('#visit-type').val('');
+		$('#cost').val('');
 	});
 });
 
