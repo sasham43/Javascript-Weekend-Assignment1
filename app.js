@@ -40,20 +40,21 @@ var initialList = [claim1, claim2, claim3, claim4, claim5];
 // add new claims to array
 initialList.push(claim6, claim7, claim8, claim9, claim10);
 
-console.log(percentCovered(claim1));
-
 var totalPayedOut = 0;
 
+for (var it = 0; it < initialList.length; it++){
+	calcAmountCovered(initialList[it]);
+}
+
 //function to determine percent covered
-function percentCovered(claim){
-	// pull variable values out of object for processing
-	var name = claim.name;
+function calcPercentCovered(claim){
+	// pull variable value out of object for processing
 	var visitType = claim.visitType;
-	var cost = claim.visitCost;
 
 	// initialize percentCovered, to be generated based on visit type and then returned
 	var percentCovered = 0.0;
 
+	// generate percentCovered based on visit type
 	switch(visitType){
 		case "Optical":
 			percentCovered = 0.0;
@@ -75,6 +76,17 @@ function percentCovered(claim){
 }
 
 //function to determine amount covered
+function calcAmountCovered(claim){
+	var name = claim.patientName;
+	var visitCost = claim.visitCost;
+	var percent = calcPercentCovered(claim);
+
+	var amountCovered = visitCost * percent;
+
+	totalPayedOut += amountCovered;
+
+	console.log('Paid out $' + amountCovered + ' for ' + name);
+}
 
 function claim(name, type, cost){
 	this.patientName = name;
