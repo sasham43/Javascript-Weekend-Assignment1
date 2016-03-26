@@ -75,8 +75,8 @@ $(document).ready(function(){
 
 			processedClaims += '<tr><td>' + tempName + '</td><td>$' + tempAmount.toLocaleString() + '</td></tr>';
 		}
-		$('.claims-payed').append(processedClaims);
-		$('.total').append('<p>$' + totalPayedOut.toLocaleString() + '</p>')
+		$('.total').before(processedClaims);
+		$('.total td:nth-child(2)').text('$' + totalPayedOut.toLocaleString())
 	});
 });
 

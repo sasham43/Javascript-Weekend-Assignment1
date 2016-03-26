@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Weekend Assignment</title>
+		<link rel="stylesheet" href="style.css" />
 		<script src="jquery.js"></script>
 		<script src="app.js"></script>
 	</head>
@@ -10,24 +11,28 @@
 		<h1>Initial Claims</h1>
 		<table class="display-claims">
 			<tr>
-				<td>Patient Name</td> <td>Visit Type</td> <td>Cost</td>
+				<th>Patient Name</th> <th>Visit Type</th> <th>Cost</th>
 			</tr>
 
 		</table>
 
-		<button id="process-claims">Process Claims</button>
+
 
 		<div class="message-center">
+			<button id="process-claims">Process Claims</button>
 			<h1>Processed Claims</h1>
 			<table class="claims-payed">
 				<tr>
-					<td>Patient Name</td> <td>Amount Payed</td>
+					<th>Patient Name</th> <th>Amount Payed</th>
+				</tr>
+				<tr class="total">
+					<td>Total:</td><td></td>
 				</tr>
 			</table>
-
+<!--
 			<div class="total">
 				Total:
-			</div>
+			</div> -->
 
 		</div>
 
