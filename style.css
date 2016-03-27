@@ -46,3 +46,14 @@ input {
 .total td:first-child{
   font-weight: bold;
 }
+
+.workers-paradise{
+  display: none;
+  background: #3344CC;
+  color: #FFFFFF;
+  padding: 10px;
+  text-align: center;
+  height: 150px;
+  vertical-align: center;
+  font-size: 3em;
+}

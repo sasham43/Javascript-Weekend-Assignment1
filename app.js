@@ -42,6 +42,8 @@ initialList.push(claim6, claim7, claim8, claim9, claim10);
 
 var totalPayedOut = 0;
 
+var sandersElected = false;
+
 // not needed in hard mode
 
 // for (var it = 0; it < initialList.length; it++){
@@ -67,6 +69,9 @@ $(document).ready(function(){
 	// process claims, display results
 	var processedClaims = '';
 	$('#process-claims').on('click', function(){
+		if(sandersElected){
+			alert('Welcome to socialized medicine!  All claims are payed out 100%!');
+		}
 		for (var kt = 0; kt < initialList.length; kt++){
 			if(!initialList[kt].claimProcessed){							// only run if there is no claimProcessed property, this is to prevent duplicates
 				var tempName = initialList[kt].patientName;
@@ -84,21 +89,36 @@ $(document).ready(function(){
 	// add claims to initial claims list
 	var claimNumber = 10;
 	$('#add-claims').on('click', function(){
-		var newName = $('#patient-name').val();
-		var newVisitType = $('#visit-type').val();
-		var newCost = parseInt($('#cost').val());
-		var displayCost = '$' + newCost.toLocaleString();
+		if(sandersElected){
+			alert('Welcome to socialist medicine.  Your claim will be added to the queue and should be ready for processing in the year 2075');
+			$('#patient-name').val('');
+			$('#visit-type').val('');
+			$('#cost').val('');
+		}
+		else {
+			var newName = $('#patient-name').val();
+			var newVisitType = $('#visit-type').val();
+			var newCost = parseInt($('#cost').val());
+			var displayCost = '$' + newCost.toLocaleString();
 
-		var newClaim = new claim(newName, newVisitType, newCost);  // construct new claim object so we can push this to the array
-		var displayClaim = '<tr><td>' + newName + '</td><td>' + newVisitType + '</td><td>' + displayCost + '</td></tr>';
+			var newClaim = new claim(newName, newVisitType, newCost);  // construct new claim object so we can push this to the array
+			var displayClaim = '<tr><td>' + newName + '</td><td>' + newVisitType + '</td><td>' + displayCost + '</td></tr>';
 
-		initialList.push(newClaim);
-		$('.additional-claims').before(displayClaim); 	// add table row before the last additional claims row
+			initialList.push(newClaim);
+			$('.additional-claims').before(displayClaim); 	// add table row before the last additional claims row
 
-		// reset input fields by setting them to empty strings
-		$('#patient-name').val('');
-		$('#visit-type').val('');
-		$('#cost').val('');
+			// reset input fields by setting them to empty strings
+			$('#patient-name').val('');
+			$('#visit-type').val('');
+			$('#cost').val('');
+		}
+	});
+
+	// elect Bernie Sanders to transform America into a Glorious Socialist Worker's Paradise
+	$('#elect-sanders').on('click', function(){
+		sandersElected = true;
+		$(this).css({'display':'none'});
+		$('.workers-paradise').css({'display': 'block'});
 	});
 });
 
@@ -110,22 +130,28 @@ function calcPercentCovered(claim){
 	// initialize percentCovered, to be generated based on visit type and then returned
 	var percentCovered = 0.0;
 
-	// generate percentCovered based on visit type
-	switch(visitType){
-		case "Optical":
-			percentCovered = 0.0;
-			break;
-		case "Specialist":
-			percentCovered = 0.1;
-			break;
-		case "Primary Care":
-			percentCovered = 0.5;
-			break;
-		case "Emergency":
-			percentCovered = 1.0;
-			break;
-		default:
-			alert("Visit Type not recognized");
+	// super pro mode
+	if (sandersElected){
+		percentCovered = 1.0;
+	} else {
+
+		// generate percentCovered based on visit type
+		switch(visitType){
+			case "Optical":
+				percentCovered = 0.0;
+				break;
+			case "Specialist":
+				percentCovered = 0.1;
+				break;
+			case "Primary Care":
+				percentCovered = 0.5;
+				break;
+			case "Emergency":
+				percentCovered = 1.0;
+				break;
+			default:
+				alert("Visit Type not recognized");
+			}
 		}
 
 		return percentCovered;
