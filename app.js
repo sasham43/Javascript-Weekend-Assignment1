@@ -62,24 +62,22 @@ $(document).ready(function(){
 
 		claimText += '<tr><td>' + pName + '</td><td>' + vType + '</td><td>' + amount + '</td></tr>';
 	}
-	$('.additional-claims').before(claimText);
-
-	//console.log('claims', claimText);
+	$('.additional-claims').before(claimText);	// add table rows before the last row, which functions as input
 
 	// process claims, display results
 	var processedClaims = '';
 	$('#process-claims').on('click', function(){
 		for (var kt = 0; kt < initialList.length; kt++){
-			if(!initialList[kt].claimProcessed){
+			if(!initialList[kt].claimProcessed){							// only run if there is no claimProcessed property, this is to prevent duplicates
 				var tempName = initialList[kt].patientName;
 				var tempAmount = calcAmountCovered(initialList[kt]);
 
 				processedClaims += '<tr><td>' + tempName + '</td><td>$' + tempAmount.toLocaleString() + '</td></tr>';
-				initialList[kt].claimProcessed = true;
+				initialList[kt].claimProcessed = true;				// initialize claimProcessed and set to true to prevent duplicates
 			}
 		}
-		$('.total').before(processedClaims);
-		$('.total td:nth-child(2)').text('$' + totalPayedOut.toLocaleString());
+		$('.total').before(processedClaims);						// add text before the last table row
+		$('.total td:nth-child(2)').text('$' + totalPayedOut.toLocaleString()); 		// add total to second child of .total
 		processedClaims = '';
 	});
 
@@ -91,15 +89,13 @@ $(document).ready(function(){
 		var newCost = parseInt($('#cost').val());
 		var displayCost = '$' + newCost.toLocaleString();
 
-		console.log(displayCost);
-
-		var newClaim = new claim(newName, newVisitType, newCost);
+		var newClaim = new claim(newName, newVisitType, newCost);  // construct new claim object so we can push this to the array
 		var displayClaim = '<tr><td>' + newName + '</td><td>' + newVisitType + '</td><td>' + displayCost + '</td></tr>';
 
 		initialList.push(newClaim);
-		$('.additional-claims').before(displayClaim);
+		$('.additional-claims').before(displayClaim); 	// add table row before the last additional claims row
 
-		// reset input fields
+		// reset input fields by setting them to empty strings
 		$('#patient-name').val('');
 		$('#visit-type').val('');
 		$('#cost').val('');
